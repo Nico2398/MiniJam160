@@ -16,7 +16,7 @@ public class ControlRoom : MonoBehaviour
     private float currentFuel = 0f;
     private List<LaserCanon> laserCanons = new List<LaserCanon>();
     private List<Reactor> reactors = new List<Reactor>();
-    private List<FuelTank> fuelTanks = new List<FuelTank>();
+    private List<Cargo> cargos = new List<Cargo>();
 
     // Input variables
     private float inputRotation = 0f;
@@ -127,6 +127,16 @@ public class ControlRoom : MonoBehaviour
     public void RemoveEnergyRate(float rate)
     {
         energyRate -= rate;
+    }
+
+    public void AddCargo(Cargo cargo)
+    {
+        cargos.Add(cargo);
+    }
+
+    public void RemoveCargo(Cargo cargo)
+    {
+        cargos.Remove(cargo);
     }
 
     private void Fire()
