@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3287582343682827395
+--- !u!1001 &5959949993383600260
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,17 +8,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3978824006519031341, guid: 68855761eabfb88458c461526dfc29e1, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 5739884304380592846, guid: 68855761eabfb88458c461526dfc29e1, type: 3}
       propertyPath: m_Color.b
-      value: 0.5678006
+      value: 0.908888
       objectReference: {fileID: 0}
     - target: {fileID: 5739884304380592846, guid: 68855761eabfb88458c461526dfc29e1, type: 3}
       propertyPath: m_Color.g
-      value: 0.9811321
+      value: 0.46588337
       objectReference: {fileID: 0}
     - target: {fileID: 5739884304380592846, guid: 68855761eabfb88458c461526dfc29e1, type: 3}
       propertyPath: m_Color.r
-      value: 0.472054
+      value: 0.9811321
       objectReference: {fileID: 0}
     - target: {fileID: 6537978781771419849, guid: 68855761eabfb88458c461526dfc29e1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6537978781771419849, guid: 68855761eabfb88458c461526dfc29e1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 6537978781771419849, guid: 68855761eabfb88458c461526dfc29e1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -60,38 +64,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6661213558553145154, guid: 68855761eabfb88458c461526dfc29e1, type: 3}
-      propertyPath: m_AngularDrag
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 7627507829142819412, guid: 68855761eabfb88458c461526dfc29e1, type: 3}
       propertyPath: m_Name
-      value: ControlRoom
+      value: Reactor
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: -3978824006519031341, guid: 68855761eabfb88458c461526dfc29e1, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7627507829142819412, guid: 68855761eabfb88458c461526dfc29e1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4156853048965291521}
+      addedObject: {fileID: 654107800263530009}
   m_SourcePrefab: {fileID: 100100000, guid: 68855761eabfb88458c461526dfc29e1, type: 3}
---- !u!1 &4919495726441838295 stripped
+--- !u!1 &4282825407602438864 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7627507829142819412, guid: 68855761eabfb88458c461526dfc29e1, type: 3}
-  m_PrefabInstance: {fileID: 3287582343682827395}
+  m_PrefabInstance: {fileID: 5959949993383600260}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4156853048965291521
+--- !u!114 &654107800263530009
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4919495726441838295}
+  m_GameObject: {fileID: 4282825407602438864}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c48d2b51a40bf94cab019d3d4c063b5, type: 3}
+  m_Script: {fileID: 11500000, guid: ce4876b39ce89b84ebc59f4f734cce50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationTorque: 1000
+  controlRoom: {fileID: 0}
+  thrustForce: 1000
+  fuelConsumption: 1

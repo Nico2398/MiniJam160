@@ -11,8 +11,11 @@ public class ControlRoom : MonoBehaviour
     // Modules parameters
     private int maxEnergy = 0;
     private int currentEnergy;
-    private float fuel = 0f;
+    private float maxFuel = 0f;
+    private float currentFuel = 0f;
     private List<LaserCanon> laserCanons = new List<LaserCanon>();
+    private List<Reactor> reactors = new List<Reactor>();
+    private List<FuelTank> fuelTanks = new List<FuelTank>();
 
     // Input variables
     private float inputRotation = 0f;
@@ -29,11 +32,20 @@ public class ControlRoom : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         currentEnergy = maxEnergy;
+        currentFuel = maxFuel;
     }
 
     void FixedUpdate()
     {
         rb.AddTorque(-inputRotation * Time.fixedDeltaTime * rotationTorque);
+        if (inputThrust > 0)
+        {
+            Thrust(Time.fixedDeltaTime);
+        }
+        if (inputFire > 0)
+        {
+            Fire();
+        }
     }
 
     public bool ConsumeEnergy(int consumedEnergy)
@@ -46,15 +58,46 @@ public class ControlRoom : MonoBehaviour
         return false;
     }
 
+    public bool ConsumeFuel(float fuel)
+    {
+        if (currentFuel >= fuel)
+        {
+            currentFuel -= fuel;
+            return true;
+        }
+        return false;
+    }
+
     public void RegisterLaserCanon(LaserCanon laserCanon)
     {
-        laserCanon.SetControlRoom(this);
         laserCanons.Add(laserCanon);
     }
 
     public void UnregisterLaserCanon(LaserCanon laserCanon)
     {
         laserCanons.Remove(laserCanon);
+    }
+
+    public void RegisterReactor(Reactor reactor)
+    {
+        reactors.Add(reactor);
+    }
+
+    public void UnregisterReactor(Reactor reactor)
+    {
+        reactors.Remove(reactor);
+    }
+
+    public void AddMaxFuel(float fuel)
+    {
+        maxFuel += fuel;
+        currentFuel += fuel;
+    }
+
+    public void RemoveMaxFuel(float fuel)
+    {
+        maxFuel -= fuel;
+        currentFuel = Mathf.Min(currentFuel, maxFuel);
     }
 
     private void Fire()
@@ -75,9 +118,12 @@ public class ControlRoom : MonoBehaviour
 
     }
 
-    private void Thrust()
+    private void Thrust(float deltaTime)
     {
-
+        foreach(Reactor reactor in reactors)
+        {
+            reactor.Thrust(deltaTime);
+        }
     }
 
     public void OnFireInput(InputAction.CallbackContext context)

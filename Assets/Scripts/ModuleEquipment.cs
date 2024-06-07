@@ -8,19 +8,13 @@ public class ModuleEquipment : MonoBehaviour
     private Joint2D joint;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         joint = GetComponent<Joint2D>();
         if (controlRoom != null)
         {
-            joint.connectedBody = controlRoom.GetComponent<Rigidbody2D>();
+            SetControlRoom(controlRoom);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public virtual void SetControlRoom(ControlRoom controlRoom)
