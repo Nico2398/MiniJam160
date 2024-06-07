@@ -1,5 +1,85 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2102695547299748247
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3109611539779932240}
+  - component: {fileID: 3816536716248275172}
+  - component: {fileID: 4775777886781961071}
+  m_Layer: 0
+  m_Name: LootMagnet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3109611539779932240
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102695547299748247}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8585065640200074314}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3816536716248275172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102695547299748247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 225ec71b98cc5174bb61f069c9a04c7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &4775777886781961071
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102695547299748247}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 10
 --- !u!1001 &3287582343682827395
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -71,7 +151,10 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: -3978824006519031341, guid: 68855761eabfb88458c461526dfc29e1, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6537978781771419849, guid: 68855761eabfb88458c461526dfc29e1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3109611539779932240}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7627507829142819412, guid: 68855761eabfb88458c461526dfc29e1, type: 3}
       insertIndex: -1
@@ -95,3 +178,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationTorque: 1000
+  lootPrefabs:
+  - {fileID: 1194753978510563137, guid: 2659ab6cd8fb1e04fba3f5834d435e60, type: 3}
+  - {fileID: 8371391103658376168, guid: 16fdf89e311d5b44387468198a0f6ea9, type: 3}
+  - {fileID: 7248988020214111247, guid: 04e2183371ae60a478a5a8a8ff214c58, type: 3}
+  lootMagnet: {fileID: 2102695547299748247}
+--- !u!4 &8585065640200074314 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6537978781771419849, guid: 68855761eabfb88458c461526dfc29e1, type: 3}
+  m_PrefabInstance: {fileID: 3287582343682827395}
+  m_PrefabAsset: {fileID: 0}

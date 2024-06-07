@@ -29,6 +29,7 @@ public class Module : MonoBehaviour
     public void ReceiveDamage(int damage)
     {
         currentHealth -= damage;
+        Debug.Log("Current health: " + currentHealth);
         if (currentHealth <= 0)
         {
             Destroy();

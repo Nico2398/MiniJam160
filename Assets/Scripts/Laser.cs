@@ -23,7 +23,7 @@ public class Laser : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject == emitter)
+        if (other.gameObject == emitter || other.isTrigger)
         {
             return;
         }

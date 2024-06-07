@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8362351470245825358
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3273844943606179117, guid: 04e2183371ae60a478a5a8a8ff214c58, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3273844943606179117, guid: 04e2183371ae60a478a5a8a8ff214c58, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3273844943606179117, guid: 04e2183371ae60a478a5a8a8ff214c58, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3273844943606179117, guid: 04e2183371ae60a478a5a8a8ff214c58, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3273844943606179117, guid: 04e2183371ae60a478a5a8a8ff214c58, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3273844943606179117, guid: 04e2183371ae60a478a5a8a8ff214c58, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3273844943606179117, guid: 04e2183371ae60a478a5a8a8ff214c58, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3273844943606179117, guid: 04e2183371ae60a478a5a8a8ff214c58, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3273844943606179117, guid: 04e2183371ae60a478a5a8a8ff214c58, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3273844943606179117, guid: 04e2183371ae60a478a5a8a8ff214c58, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6434191621641155826, guid: 04e2183371ae60a478a5a8a8ff214c58, type: 3}
+      propertyPath: m_Color.b
+      value: 0.26353964
+      objectReference: {fileID: 0}
+    - target: {fileID: 6434191621641155826, guid: 04e2183371ae60a478a5a8a8ff214c58, type: 3}
+      propertyPath: m_Color.g
+      value: 0.22536679
+      objectReference: {fileID: 0}
+    - target: {fileID: 6434191621641155826, guid: 04e2183371ae60a478a5a8a8ff214c58, type: 3}
+      propertyPath: m_Color.r
+      value: 0.27044016
+      objectReference: {fileID: 0}
+    - target: {fileID: 7248988020214111247, guid: 04e2183371ae60a478a5a8a8ff214c58, type: 3}
+      propertyPath: m_Name
+      value: LootScrap Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8669361425630890135, guid: 04e2183371ae60a478a5a8a8ff214c58, type: 3}
+      propertyPath: lootType
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 04e2183371ae60a478a5a8a8ff214c58, type: 3}

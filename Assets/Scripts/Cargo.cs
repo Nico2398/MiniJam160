@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Cargo : ModuleEquipment
 {
-    public int size = 10;
+    public int capacity = 10;
 
     // Start is called before the first frame update
     public override void Start()
@@ -15,11 +15,11 @@ public class Cargo : ModuleEquipment
     public override void SetControlRoom(ControlRoom controlRoom)
     {
         base.SetControlRoom(controlRoom);
-        base.controlRoom.AddCargo(this);
+        base.controlRoom.AddCargoRoom(capacity);
     }
 
     public void OnDestroy()
     {
-        base.controlRoom.RemoveCargo(this);
+        base.controlRoom.RemoveCargoRoom(capacity);
     }
 }

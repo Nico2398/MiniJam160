@@ -1,12 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 
 public class ControlRoom : MonoBehaviour
 {
     // Gameplay parameters
     public float rotationTorque = 1f;
+    public GameObject[] lootPrefabs;
+    public GameObject lootMagnet;
 
     // Modules parameters
     private float maxEnergy = 0;
@@ -14,9 +20,11 @@ public class ControlRoom : MonoBehaviour
     private float energyRate = 0f;
     private float maxFuel = 0f;
     private float currentFuel = 0f;
+    private int maxCargo = 0;
+    private int currentCargo = 0;
+    private Dictionary<LootType, int> cargoAmountByType = new Dictionary<LootType, int>();
     private List<LaserCanon> laserCanons = new List<LaserCanon>();
     private List<Reactor> reactors = new List<Reactor>();
-    private List<Cargo> cargos = new List<Cargo>();
 
     // Input variables
     private float inputRotation = 0f;
@@ -27,6 +35,9 @@ public class ControlRoom : MonoBehaviour
     // Components
     private Rigidbody2D rb;
 
+    // Internal variables
+    private Dictionary<LootType, GameObject> lootPrefabsByType;
+
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +45,24 @@ public class ControlRoom : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         currentEnergy = maxEnergy;
         currentFuel = maxFuel;
+
+        InitLootPrefabs();
+    }
+
+    private void InitLootPrefabs()
+    {
+        lootPrefabsByType = new Dictionary<LootType, GameObject>();
+        foreach(GameObject lootPrefab in lootPrefabs)
+        {
+            Loot loot = lootPrefab.GetComponent<Loot>();
+            lootPrefabsByType[loot.lootType] = lootPrefab;
+        }
+        LootType[] allLootTypes = (LootType[])Enum.GetValues(typeof(LootType));
+        bool containsAllLootTypes = allLootTypes.All(type => lootPrefabsByType.ContainsKey(type));
+        if (!containsAllLootTypes)
+        {
+            Debug.LogError("lootPrefabs is missing some types of loot.");
+        }
     }
 
     void FixedUpdate()
@@ -129,14 +158,81 @@ public class ControlRoom : MonoBehaviour
         energyRate -= rate;
     }
 
-    public void AddCargo(Cargo cargo)
+    public void AddCargoRoom(int capacity)
     {
-        cargos.Add(cargo);
+        maxCargo += capacity;
+        UpdateMagnet();
     }
 
-    public void RemoveCargo(Cargo cargo)
+    public void RemoveCargoRoom(int capacity)
     {
-        cargos.Remove(cargo);
+        maxCargo -= capacity;
+        DropExcessCargo();
+        UpdateMagnet();
+    }
+
+    public void DropExcessCargo()
+    {
+        while (currentCargo > maxCargo)
+        {
+            int cargoToDropId = UnityEngine.Random.Range(0, currentCargo);
+            LootType typeToDrop = LootType.Scrap;
+            int currentId = 0;
+            foreach(LootType lootType in cargoAmountByType.Keys)
+            {
+                currentId += cargoAmountByType[lootType];
+                if (currentId >= cargoToDropId)
+                {
+                    typeToDrop = lootType;
+                    break;
+                }
+            }
+            Drop(typeToDrop);
+        }
+    }
+
+    public bool Loot(LootType lootType)
+    {
+        if (currentCargo < maxCargo)
+        {
+            if (!cargoAmountByType.ContainsKey(lootType))
+            {
+                cargoAmountByType[lootType] = 0;
+            }
+            cargoAmountByType[lootType]++;
+            currentCargo++;
+        }
+        else
+        {
+            return false;
+        }
+        UpdateMagnet();
+        return true;
+    }
+
+    public void Drop(LootType lootType)
+    {
+        if (cargoAmountByType.ContainsKey(lootType) && cargoAmountByType[lootType] > 0)
+        {
+            cargoAmountByType[lootType]--;
+            currentCargo--;
+            if (cargoAmountByType[lootType] == 0)
+            {
+                cargoAmountByType.Remove(lootType);
+            }
+
+            GameObject lootObject = Instantiate(lootPrefabsByType[lootType], transform.position, transform.rotation);
+            Loot loot = lootObject.GetComponent<Loot>();
+            loot.LockMagnet();
+            loot.Reject();
+        }
+        UpdateMagnet();
+    }
+
+    private void UpdateMagnet()
+    {
+        lootMagnet.SetActive(maxCargo > currentCargo);
+        Debug.Log("Magnet is " + (maxCargo > currentCargo ? "on" : "off") + "(" + currentCargo + "/" + maxCargo + ")");
     }
 
     private void Fire()
