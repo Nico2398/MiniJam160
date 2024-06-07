@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class LaserCanon : ModuleEquipment
 {
-    public int energyCost = 10;
+    public float energyCost = 5;
+    public GameObject laserPrefab;
 
     public void Fire()
     {
         if (controlRoom.ConsumeEnergy(energyCost))
         {
-            Debug.Log("Laser fired!");
-        }
-        else
-        {
-            Debug.Log("Not enough energy to fire the laser!");
+            GameObject laser = Instantiate(laserPrefab, transform.position, transform.rotation);
+            Laser laserScript = laser.GetComponent<Laser>();
+            laserScript.SetEmitter(gameObject);
         }
     }
 

@@ -9,8 +9,9 @@ public class ControlRoom : MonoBehaviour
     public float rotationTorque = 1f;
 
     // Modules parameters
-    private int maxEnergy = 0;
-    private int currentEnergy;
+    private float maxEnergy = 0;
+    private float currentEnergy;
+    private float energyRate = 0f;
     private float maxFuel = 0f;
     private float currentFuel = 0f;
     private List<LaserCanon> laserCanons = new List<LaserCanon>();
@@ -46,9 +47,15 @@ public class ControlRoom : MonoBehaviour
         {
             Fire();
         }
+        if (pendingBomb)
+        {
+            Bomb();
+            pendingBomb = false;
+        }
+        currentEnergy = Mathf.Min(currentEnergy + energyRate * Time.fixedDeltaTime, maxEnergy);
     }
 
-    public bool ConsumeEnergy(int consumedEnergy)
+    public bool ConsumeEnergy(float consumedEnergy)
     {
         if (currentEnergy >= consumedEnergy)
         {
@@ -100,6 +107,28 @@ public class ControlRoom : MonoBehaviour
         currentFuel = Mathf.Min(currentFuel, maxFuel);
     }
 
+    public void AddMaxEnergy(float energy)
+    {
+        maxEnergy += energy;
+        currentEnergy += energy;
+    }
+
+    public void RemoveMaxEnergy(float energy)
+    {
+        maxEnergy -= energy;
+        currentEnergy = Mathf.Min(currentEnergy, maxEnergy);
+    }
+
+    public void AddEnergyRate(float rate)
+    {
+        energyRate += rate;
+    }
+
+    public void RemoveEnergyRate(float rate)
+    {
+        energyRate -= rate;
+    }
+
     private void Fire()
     {
         foreach(LaserCanon laserCanon in laserCanons)
@@ -110,12 +139,7 @@ public class ControlRoom : MonoBehaviour
 
     private void Bomb()
     {
-
-    }
-
-    private void Rotate()
-    {
-
+        Debug.Log("Bomb dropped!");
     }
 
     private void Thrust(float deltaTime)
