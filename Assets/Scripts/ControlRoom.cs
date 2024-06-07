@@ -5,22 +5,35 @@ using UnityEngine.InputSystem;
 
 public class ControlRoom : MonoBehaviour
 {
+    // Gameplay parameters
+    public float rotationTorque = 1f;
+
+    // Modules parameters
     private int maxEnergy = 0;
     private int currentEnergy;
     private float fuel = 0f;
+    private List<LaserCanon> laserCanons = new List<LaserCanon>();
 
-    List<LaserCanon> laserCanons = new List<LaserCanon>();
+    // Input variables
+    private float inputRotation = 0f;
+    private float inputThrust = 0f;
+    private float inputFire = 0f;
+    private bool pendingBomb = false;
+
+    // Components
+    private Rigidbody2D rb;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         currentEnergy = maxEnergy;
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        rb.AddTorque(-inputRotation * Time.fixedDeltaTime * rotationTorque);
     }
 
     public bool ConsumeEnergy(int consumedEnergy)
@@ -44,7 +57,7 @@ public class ControlRoom : MonoBehaviour
         laserCanons.Remove(laserCanon);
     }
 
-    public void Fire()
+    private void Fire()
     {
         foreach(LaserCanon laserCanon in laserCanons)
         {
@@ -52,32 +65,44 @@ public class ControlRoom : MonoBehaviour
         }
     }
 
+    private void Bomb()
+    {
+
+    }
+
+    private void Rotate()
+    {
+
+    }
+
+    private void Thrust()
+    {
+
+    }
+
     public void OnFireInput(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            Debug.Log("Fire");
-            Fire();
-        }
+        float input = context.ReadValue<float>();
+        inputFire = input;
     }
 
     public void OnBombInput(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            Debug.Log("Bomb");
+            pendingBomb = true;
         }
     }
 
     public void OnRotateInput(InputAction.CallbackContext context)
     {
         float input = context.ReadValue<float>();
-        Debug.Log(input);
+        inputRotation = input;
     }
 
     public void OnThrustInput(InputAction.CallbackContext context)
     {
         float input = context.ReadValue<float>();
-        Debug.Log(input);
+        inputThrust = input;
     }
 }

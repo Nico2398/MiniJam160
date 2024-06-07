@@ -357,6 +357,14 @@ PrefabInstance:
       propertyPath: controlRoom
       value: 
       objectReference: {fileID: 7506835399315721792}
+    - target: {fileID: 3107984864261623104, guid: d97d3713b6cf0874ca41c7722f09f795, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107984864261623104, guid: d97d3713b6cf0874ca41c7722f09f795, type: 3}
+      propertyPath: m_ConnectedRigidBody
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4130423654573859930, guid: d97d3713b6cf0874ca41c7722f09f795, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -410,9 +418,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4156853048965291521, guid: 8b9842ee4c92f10418348ce711f5e4bd, type: 3}
+      propertyPath: rotationTorque
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 4919495726441838295, guid: 8b9842ee4c92f10418348ce711f5e4bd, type: 3}
       propertyPath: m_Name
       value: ControlRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209697948265401281, guid: 8b9842ee4c92f10418348ce711f5e4bd, type: 3}
+      propertyPath: m_AngularDrag
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8585065640200074314, guid: 8b9842ee4c92f10418348ce711f5e4bd, type: 3}
       propertyPath: m_LocalPosition.x

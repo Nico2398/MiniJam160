@@ -64,7 +64,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: ControlRoom
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -3978824006519031341, guid: 68855761eabfb88458c461526dfc29e1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -89,3 +90,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c48d2b51a40bf94cab019d3d4c063b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationTorque: 1

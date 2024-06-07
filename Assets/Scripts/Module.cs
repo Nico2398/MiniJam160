@@ -7,6 +7,7 @@ public class Module : MonoBehaviour
     public int maxHealth = 3;
 
     private int currentHealth;
+    private Joint2D joint;
 
     // Start is called before the first frame update
     void Start()
