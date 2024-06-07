@@ -28,10 +28,10 @@ public class Laser : MonoBehaviour
             return;
         }
 
-        Module module = other.GetComponent<Module>();
-        if (module != null)
+        Health health = other.GetComponent<Health>();
+        if (health != null)
         {
-            module.ReceiveDamage(damage);
+            health.ReceiveDamage(damage);
         }
 
         Destroy(gameObject);
