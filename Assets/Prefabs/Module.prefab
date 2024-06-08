@@ -173,6 +173,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 3
+  invincibilityTime: 0.3
+  blinkTime: 0.2
+  blinkColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!255 &-3978824006519031341
 FixedJoint2D:
   m_ObjectHideFlags: 0

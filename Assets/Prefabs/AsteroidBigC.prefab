@@ -152,6 +152,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 4
+  invincibilityTime: 0
+  blinkTime: 0
+  blinkColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!50 &2399125907996031236
 Rigidbody2D:
   serializedVersion: 4

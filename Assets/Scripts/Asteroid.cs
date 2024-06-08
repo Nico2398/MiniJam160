@@ -29,4 +29,17 @@ public class Asteroid : MonoBehaviour
             }
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Health health = collision.gameObject.GetComponent<Health>();
+            if (health != null)
+            {
+                health.ReceiveDamage(1);
+                rb.velocity += collision.relativeVelocity * 0.5f;
+            }
+        }
+    }
 }
