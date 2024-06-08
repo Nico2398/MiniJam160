@@ -9,6 +9,13 @@ public class LaserCanon : ModuleEquipment
     public float cooldownMax = 0.5f;
 
     private float cooldown = 0;
+    private Rigidbody2D rb;
+
+    public override void Start()
+    {
+        base.Start();
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     private void FixedUpdate()
     {
@@ -26,6 +33,7 @@ public class LaserCanon : ModuleEquipment
             GameObject laser = Instantiate(laserPrefab, transform.position, transform.rotation);
             Laser laserScript = laser.GetComponent<Laser>();
             laserScript.SetEmitter(gameObject);
+            laser.GetComponent<Rigidbody2D>().velocity = rb.velocity;
             cooldown = cooldownMax;
         }
     }

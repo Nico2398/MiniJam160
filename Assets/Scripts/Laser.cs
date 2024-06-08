@@ -14,7 +14,7 @@ public class Laser : MonoBehaviour
     void Start()
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.velocity = transform.up * speed;
+        rb.velocity += new Vector2(transform.up.x, transform.up.y) * speed;
     }
 
     public void SetEmitter(GameObject emitter)
