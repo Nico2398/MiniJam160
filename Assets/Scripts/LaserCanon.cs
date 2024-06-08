@@ -6,14 +6,27 @@ public class LaserCanon : ModuleEquipment
 {
     public float energyCost = 5;
     public GameObject laserPrefab;
+    public float cooldownMax = 0.5f;
+
+    private float cooldown = 0;
+
+    private void FixedUpdate()
+    {
+        cooldown -= Time.fixedDeltaTime;
+    }
 
     public void Fire()
     {
+        if (cooldown > 0)
+        {
+            return;
+        }
         if (controlRoom.ConsumeEnergy(energyCost))
         {
             GameObject laser = Instantiate(laserPrefab, transform.position, transform.rotation);
             Laser laserScript = laser.GetComponent<Laser>();
             laserScript.SetEmitter(gameObject);
+            cooldown = cooldownMax;
         }
     }
 
