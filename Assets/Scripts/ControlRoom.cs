@@ -5,6 +5,7 @@ using System.Linq;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 
 public class ControlRoom : MonoBehaviour
@@ -13,6 +14,10 @@ public class ControlRoom : MonoBehaviour
     public float rotationTorque = 1f;
     public GameObject[] lootPrefabs;
     public GameObject lootMagnet;
+
+    // UI parameters
+    public Image fuelBar;
+    public Image energyBar;
 
     // Modules parameters
     private float maxEnergy = 0;
@@ -47,6 +52,12 @@ public class ControlRoom : MonoBehaviour
         currentFuel = maxFuel;
 
         InitLootPrefabs();
+    }
+
+    private void Update()
+    {
+        fuelBar.fillAmount = currentFuel / maxFuel;
+        energyBar.fillAmount = currentEnergy / maxEnergy;
     }
 
     private void InitLootPrefabs()
