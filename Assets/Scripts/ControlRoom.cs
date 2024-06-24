@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -11,13 +12,16 @@ using UnityEngine.UI;
 public class ControlRoom : MonoBehaviour
 {
     // Gameplay parameters
+    [Header("Gameplay parameters")]
     public float rotationTorque = 1f;
     public GameObject[] lootPrefabs;
     public GameObject lootMagnet;
 
     // UI parameters
+    [Header("UI parameters")]
     public Image fuelBar;
     public Image energyBar;
+    public RectTransform wormholeArrow;
 
     // Modules parameters
     private float maxEnergy = 0;
@@ -31,7 +35,7 @@ public class ControlRoom : MonoBehaviour
     private List<LaserCanon> laserCanons = new List<LaserCanon>();
     private List<Reactor> reactors = new List<Reactor>();
 
-    // Input variables
+    // Player input variables
     private float inputRotation = 0f;
     private float inputThrust = 0f;
     private float inputFire = 0f;
@@ -42,6 +46,7 @@ public class ControlRoom : MonoBehaviour
 
     // Internal variables
     private Dictionary<LootType, GameObject> lootPrefabsByType;
+    private GameObject wormhole = null;
 
 
     // Start is called before the first frame update
@@ -52,12 +57,20 @@ public class ControlRoom : MonoBehaviour
         currentFuel = maxFuel;
 
         InitLootPrefabs();
+        FindWormhole();
     }
 
     private void Update()
     {
         fuelBar.fillAmount = currentFuel / maxFuel;
         energyBar.fillAmount = currentEnergy / maxEnergy;
+
+        if (wormhole != null)
+        {
+            Vector2 directionToWormhole = wormhole.transform.position - transform.position;
+            float angle = Vector2.SignedAngle(Vector2.up, directionToWormhole);
+            wormholeArrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
     }
 
     private void InitLootPrefabs()
@@ -73,6 +86,25 @@ public class ControlRoom : MonoBehaviour
         if (!containsAllLootTypes)
         {
             Debug.LogError("lootPrefabs is missing some types of loot.");
+        }
+    }
+
+    private void FindWormhole()
+    {
+        Wormhole[] wormholes = FindObjectsOfType<Wormhole>();
+
+        if (wormholes.Length != 1)
+        {
+            Debug.LogWarning("Wrong number of wormholes ! Expected: 1, Actual: " + wormholes.Length);
+        }
+
+        if (wormholes.Length > 0)
+        {
+            wormhole = wormholes[0].gameObject;
+        }
+        else
+        {
+            wormholeArrow.gameObject.SetActive(false);
         }
     }
 
