@@ -19,6 +19,9 @@ public class Asteroid : MonoBehaviour
 
     void OnDestroy()
     {
+        if (!gameObject.scene.isLoaded) // Destruction is caused by the scene being unloaded
+            return;
+
         for (int i = 0; i < lootMaxAmount; i++)
         {
             if (Random.value < lootIndividualProbability)

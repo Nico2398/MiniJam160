@@ -20,6 +20,9 @@ public class Cargo : ModuleEquipment
 
     public void OnDestroy()
     {
+        if (!gameObject.scene.isLoaded) // Destruction is caused by the scene being unloaded
+            return;
+
         base.controlRoom.RemoveCargoRoom(capacity);
     }
 }
